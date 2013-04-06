@@ -3,18 +3,6 @@ var Tablet = (function() {
   var join = Array.prototype.join;
   var forEach = Array.prototype.forEach;
 
-  var maxWidths = function(a) {
-    var max = [];  // [3, 1, 1, 7] for above art
-    a.forEach(function(row) {
-      for (var i in row) {
-        if (!max[i] || (row[i].length > max[i])) {
-          max[i] = row[i].length;
-        }
-      }
-    });
-    return max;
-  }
-
   var exports = {
     run: function() {
       console.log('welcome to tablet');
@@ -49,6 +37,18 @@ var Tablet = (function() {
       // +-----+---+---+---------+
       // | abc | d | e | fghijkl |
       // +-----+---+---+---------+
+
+      var maxWidths = function(a) {
+        var max = [];  // [3, 1, 1, 7] for above art
+        a.forEach(function(row) {
+          for (var i in row) {
+            if (!max[i] || (row[i].length > max[i])) {
+              max[i] = row[i].length;
+            }
+          }
+        });
+        return max;
+      }
 
       opts = opts || {};
       var align = opts.align || 'left';
