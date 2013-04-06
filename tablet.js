@@ -1,16 +1,28 @@
-var Tablet = (function() {
+(function() {
   var map = Array.prototype.map;
   var join = Array.prototype.join;
   var forEach = Array.prototype.forEach;
 
   var exports = {
     run: function() {
-      console.log('welcome to tablet');
+      var tables = this.tables();
+      console.log('welcome to tablet.');
+      console.log('found', tables.length, 'tables');
 
+      this.aaize();
+    },
+
+    // replace tables with aa versions
+    aaize: function() {
       forEach.call(this.tables(), function(table) {
-        console.log(this.atoaa(this.ttoa(table)));
+        var aa = this.atoaa(this.ttoa(table));
+        var pre = document.createElement('pre');
+
+        pre.innerText = aa;
+        table.parentNode.replaceChild(pre, table);
       }, this);
     },
+
 
     tables: function() {
       return document.querySelectorAll('table');
@@ -55,7 +67,7 @@ var Tablet = (function() {
       var padding = (opts.padding === undefined) ? 1 : opts.padding;
 
       var maxes = maxWidths(a);
-      var aa = '\n';
+      var aa = '';
 
       var divline = '';
       maxes.forEach(function(max) {
@@ -92,4 +104,4 @@ var Tablet = (function() {
   }
 
   return exports;
-})();
+})().run();
